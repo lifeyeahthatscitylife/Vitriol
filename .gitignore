@@ -29,3 +29,7 @@ Thumbs.db
 
 # Mac
 .DS_Store
+
+# Test output
+TestResults/
+*.trx
