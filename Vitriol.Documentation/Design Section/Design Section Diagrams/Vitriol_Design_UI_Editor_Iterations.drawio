@@ -1,0 +1,215 @@
+<mxfile host="app.diagrams.net" modified="2026-01-10T23:16:24.981923Z" agent="chatgpt" version="22.1.0" type="device">
+<diagram id="91d4a0d0-f387-4ae5-bcf7-2842300729b2" name="Editor UI - Idea 1 (low-fi)">
+<mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="Vitriol Editor - Idea 1 (low‑fi)" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+  <mxGeometry x="40" y="40" width="1080" height="720" as="geometry"/>
+</mxCell>
+<mxCell id="3" value="Top command bar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;" vertex="1" parent="1">
+  <mxGeometry x="60" y="80" width="1040" height="80" as="geometry"/>
+</mxCell>
+<mxCell id="4" value="Left panel: tools / palette / event editor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1">
+  <mxGeometry x="60" y="180" width="330" height="560" as="geometry"/>
+</mxCell>
+<mxCell id="5" value="Map viewport (scroll + zoom)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1">
+  <mxGeometry x="410" y="180" width="690" height="560" as="geometry"/>
+</mxCell>
+<mxCell id="6" value="Init DB" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="100" width="140" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="7" value="Map Size (W,H)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="240" y="100" width="260" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="8" value="Create Map" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="520" y="100" width="160" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="9" value="Load Map" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="690" y="100" width="120" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="10" value="Save" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="820" y="100" width="120" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="11" value="Zoom controls" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="950" y="100" width="130" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="12" value="Status line (saved/loaded path, hints)" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+  <mxGeometry x="80" y="135" width="1000" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="13" value="Tools
+• Mode (Tiles/Collision/Events)
+• Overlays" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="200" width="290" height="110" as="geometry"/>
+</mxCell>
+<mxCell id="14" value="Tilesets
+• Load PNGs
+• Enabled list" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="320" width="290" height="170" as="geometry"/>
+</mxCell>
+<mxCell id="15" value="Palette thumbnails (wrap)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="500" width="290" height="120" as="geometry"/>
+</mxCell>
+<mxCell id="16" value="Event editor
+• name/type
+• params
+• commands" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="630" width="290" height="95" as="geometry"/>
+</mxCell>
+<mxCell id="17" value="Viewport-only renderer:
+• draws visible tiles + overlays
+• grid lines 1px (snaps)
+• debounced re-render on scroll/zoom/edit" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+  <mxGeometry x="430" y="200" width="650" height="90" as="geometry"/>
+</mxCell>
+  </root>
+</mxGraphModel>
+</diagram>
+<diagram id="eacfef00-c2ec-465c-9a0b-9223674dae0c" name="Editor UI - Idea 2 (mid-fi)">
+<mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="Vitriol Editor - Idea 2 (mid‑fi)" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+  <mxGeometry x="40" y="40" width="1080" height="720" as="geometry"/>
+</mxCell>
+<mxCell id="3" value="Top command bar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;" vertex="1" parent="1">
+  <mxGeometry x="60" y="80" width="1040" height="80" as="geometry"/>
+</mxCell>
+<mxCell id="4" value="Left panel: tools / palette / event editor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1">
+  <mxGeometry x="60" y="180" width="330" height="560" as="geometry"/>
+</mxCell>
+<mxCell id="5" value="Map viewport (scroll + zoom)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1">
+  <mxGeometry x="410" y="180" width="690" height="560" as="geometry"/>
+</mxCell>
+<mxCell id="6" value="Init Project DB" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="95" width="160" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="7" value="Map dimensions (W/H textboxes)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="260" y="95" width="300" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="8" value="Create Sample" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="580" y="95" width="170" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="9" value="Create New" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="760" y="95" width="170" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="10" value="Load" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="940" y="95" width="130" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="11" value="Save" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="128" width="140" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="12" value="Undo/Redo" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="230" y="128" width="160" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="13" value="Zoom - / Reset / +" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="400" y="128" width="180" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="14" value="Playtest hint strip" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="590" y="128" width="240" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="15" value="Mouse tile info" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="840" y="128" width="230" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="16" value="Tools
+• Mode (Tiles/Collision/Events)
+• Overlays" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="200" width="290" height="110" as="geometry"/>
+</mxCell>
+<mxCell id="17" value="Tilesets
+• Load PNGs
+• Enabled list" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="320" width="290" height="170" as="geometry"/>
+</mxCell>
+<mxCell id="18" value="Palette thumbnails (wrap)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="500" width="290" height="120" as="geometry"/>
+</mxCell>
+<mxCell id="19" value="Event editor
+• name/type
+• params
+• commands" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="630" width="290" height="95" as="geometry"/>
+</mxCell>
+<mxCell id="20" value="Viewport-only renderer:
+• draws visible tiles + overlays
+• grid lines 1px (snaps)
+• debounced re-render on scroll/zoom/edit" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+  <mxGeometry x="430" y="200" width="650" height="90" as="geometry"/>
+</mxCell>
+  </root>
+</mxGraphModel>
+</diagram>
+<diagram id="b9f2c161-1760-4603-8116-ca28897e1438" name="Editor UI - Idea 3 (high-fi)">
+<mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="Vitriol Editor - Idea 3 (high‑fi)" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+  <mxGeometry x="40" y="40" width="1080" height="720" as="geometry"/>
+</mxCell>
+<mxCell id="3" value="Top command bar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;" vertex="1" parent="1">
+  <mxGeometry x="60" y="80" width="1040" height="80" as="geometry"/>
+</mxCell>
+<mxCell id="4" value="Left panel: tools / palette / event editor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1">
+  <mxGeometry x="60" y="180" width="330" height="560" as="geometry"/>
+</mxCell>
+<mxCell id="5" value="Map viewport (scroll + zoom)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;" vertex="1" parent="1">
+  <mxGeometry x="410" y="180" width="690" height="560" as="geometry"/>
+</mxCell>
+<mxCell id="6" value="Init DB" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="92" width="200" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="7" value="Map size: W [ ]  H [ ]" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="290" y="92" width="360" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="8" value="Create New Map" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="660" y="92" width="180" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="9" value="Load Map" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="850" y="92" width="140" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="10" value="Save" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="1000" y="92" width="100" height="30" as="geometry"/>
+</mxCell>
+<mxCell id="11" value="Status text (autosave/manual)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="128" width="300" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="12" value="Zoom indicator" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="390" y="128" width="220" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="13" value="Mouse tile readout" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="620" y="128" width="240" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="14" value="Playtest controls" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="870" y="128" width="230" height="28" as="geometry"/>
+</mxCell>
+<mxCell id="15" value="Tools
+• Mode (Tiles/Collision/Events)
+• Overlays" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="200" width="290" height="110" as="geometry"/>
+</mxCell>
+<mxCell id="16" value="Tilesets
+• Load PNGs
+• Enabled list" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="320" width="290" height="170" as="geometry"/>
+</mxCell>
+<mxCell id="17" value="Palette thumbnails (wrap)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="500" width="290" height="120" as="geometry"/>
+</mxCell>
+<mxCell id="18" value="Event editor
+• name/type
+• params
+• commands" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+  <mxGeometry x="80" y="630" width="290" height="95" as="geometry"/>
+</mxCell>
+<mxCell id="19" value="Viewport-only renderer:
+• draws visible tiles + overlays
+• grid lines 1px (snaps)
+• debounced re-render on scroll/zoom/edit" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+  <mxGeometry x="430" y="200" width="650" height="90" as="geometry"/>
+</mxCell>
+  </root>
+</mxGraphModel>
+</diagram>
+</mxfile>

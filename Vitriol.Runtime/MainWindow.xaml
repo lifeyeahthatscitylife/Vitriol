@@ -1,0 +1,66 @@
+﻿<Window x:Class="Vitriol.Runtime.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vitriol Runtime"
+        Width="1100" Height="700"
+        Background="#111"
+        KeyDown="OnWindowKeyDown"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- HUD -->
+        <Border Grid.Row="0"
+                BorderBrush="#444" BorderThickness="1"
+                CornerRadius="6"
+                Padding="10"
+                Margin="0,0,0,10"
+                Background="#1a1a1a">
+
+            <DockPanel LastChildFill="True">
+                <Button Width="120"
+                        Height="30"
+                        Margin="0,0,10,0"
+                        Click="OnLoadMapClick"
+                        DockPanel.Dock="Left"
+                        Focusable="False"
+                        IsTabStop="False"
+                        IsDefault="False">
+                    Load Map
+                </Button>
+
+                <TextBlock Name="HudText"
+                           FontSize="14"
+                           Foreground="White"
+                           Text="Booting..."
+                           TextTrimming="CharacterEllipsis"
+                           VerticalAlignment="Center"/>
+            </DockPanel>
+        </Border>
+
+        <!-- Viewport -->
+        <Border Grid.Row="1"
+                BorderBrush="#444" BorderThickness="1"
+                CornerRadius="6"
+                Background="#000">
+
+            <ScrollViewer Name="ViewScroll"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto"
+                          ScrollChanged="OnScrollChanged"
+                          Focusable="True">
+                <Canvas Name="ViewCanvas"
+                        Background="#000"
+                        Focusable="True"/>
+            </ScrollViewer>
+
+        </Border>
+    </Grid>
+</Window>

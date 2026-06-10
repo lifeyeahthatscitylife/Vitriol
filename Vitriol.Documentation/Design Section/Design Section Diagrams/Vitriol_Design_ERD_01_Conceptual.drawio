@@ -1,0 +1,58 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.3.0">
+  <diagram id="b64cf6b0-2c87-4d2c-aad6-3d918a806843" name="ERD 01 - Conceptual Model">
+    <mxGraphModel dx="778" dy="534" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;Project&lt;/b&gt;&lt;br/&gt;A folder containing maps + assets + (optional) editor DB" vertex="1">
+          <mxGeometry height="110" width="360" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;Map&lt;/b&gt;&lt;br/&gt;A playable area made of tiles, collision + events" vertex="1">
+          <mxGeometry height="120" width="360" x="40" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;Tileset&lt;/b&gt;&lt;br/&gt;PNG spritesheet + metadata (tile size, spacing, margin)" vertex="1">
+          <mxGeometry height="120" width="380" x="460" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;Layer&lt;/b&gt;&lt;br/&gt;Grid of ints (tile indices or collision flags)&lt;br/&gt;e.g., Background, Collision" vertex="1">
+          <mxGeometry height="130" width="360" x="40" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;Event&lt;/b&gt;&lt;br/&gt;Placed at (x,y). Type: Trigger / NPC / Warp" vertex="1">
+          <mxGeometry height="120" width="380" x="460" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;Event Command&lt;/b&gt;&lt;br/&gt;Script step executed by runtime/playtest&lt;br/&gt;e.g., ShowText, SetFlag" vertex="1">
+          <mxGeometry height="130" width="380" x="900" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" value="&lt;b&gt;Parameter&lt;/b&gt;&lt;br/&gt;Key-value settings (event config, command args)" vertex="1">
+          <mxGeometry height="110" width="380" x="900" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="10" edge="1" parent="1" source="3" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="4" value="Project contains 0..* Maps">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="11" edge="1" parent="1" source="3" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="5" value="Project contains 0..* Tilesets">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="12" edge="1" parent="1" source="4" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="5" value="Map references 0..* Tilesets">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="13" edge="1" parent="1" source="4" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="6" value="Map has 1..* Layers">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="14" edge="1" parent="1" source="4" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="7" value="Map has 0..* Events">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="15" edge="1" parent="1" source="7" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="8" value="Event has 0..* Commands (ordered)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="16" edge="1" parent="1" source="7" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="9" value="Event has 0..* Parameters">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="17" edge="1" parent="1" source="8" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" target="9" value="Command has 0..* Args">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;b&gt;Conceptual notes&lt;/b&gt;&lt;br/&gt;• Maps are JSON files.&lt;br/&gt;• Tilesets are PNG files referenced by relative path.&lt;br/&gt;• Layers store integers; meaning depends on layer kind.&lt;br/&gt;• Commands are data-driven so runtime can execute without hardcoding each event." vertex="1">
+          <mxGeometry height="140" width="820" x="460" y="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,33 @@
+<mxfile host="app.diagrams.net" modified="2026-01-09T11:07:03.954851Z" agent="GPT" version="22.1.0" type="device">
+<diagram id="f36f62ae-a2da-49c7-90d9-e6f34e513b73" name="ERD 04 - Persistence &amp; Validation"><mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="3" value="&lt;b&gt;Map JSON File&lt;/b&gt;&lt;br/&gt;Primary persistent gameplay data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="60" y="60" width="420" height="120" as="geometry"/>
+    </mxCell><mxCell id="4" value="&lt;b&gt;Tileset PNG&lt;/b&gt;&lt;br/&gt;Spritesheet assets referenced by maps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="60" y="220" width="420" height="120" as="geometry"/>
+    </mxCell><mxCell id="5" value="&lt;b&gt;MapValidator&lt;/b&gt;&lt;br/&gt;Checks required fields + array sizes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="560" y="60" width="420" height="120" as="geometry"/>
+    </mxCell><mxCell id="6" value="&lt;b&gt;MapSerializer&lt;/b&gt;&lt;br/&gt;LoadFromFile / SaveToFile" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="560" y="220" width="420" height="120" as="geometry"/>
+    </mxCell><mxCell id="7" value="&lt;b&gt;Undo/Redo Stacks (in-memory)&lt;/b&gt;&lt;br/&gt;Not persisted to disk&lt;br/&gt;Commands: PaintIntCell, AddEvent, ReplaceEvent, ..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="60" y="380" width="420" height="150" as="geometry"/>
+    </mxCell><mxCell id="8" value="&lt;b&gt;Editor DB (SQLite)&lt;/b&gt;&lt;br/&gt;Created/migrated on Init&lt;br/&gt;Used for editor tooling and future expansion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="560" y="380" width="420" height="150" as="geometry"/>
+    </mxCell><mxCell id="9" value="Validate before save/load" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="3" target="5">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="10" value="Only valid maps are saved" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="5" target="6">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="11" value="Writes/reads" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="6" target="3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="12" value="References tilesets by relative path" style="endArrow=block;html=1;strokeColor=#9673a6;" edge="1" parent="1" source="3" target="4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="13" value="Edits trigger Save (autosave policy)" style="endArrow=block;html=1;strokeColor=#b85450;" edge="1" parent="1" source="7" target="6">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="14" value="&lt;b&gt;Why undo/redo is not stored&lt;/b&gt;&lt;br/&gt;Persisting edit history inflates map files and is not required for gameplay.&lt;br/&gt;Keeping it in-memory keeps saves small, fast, and compatible with runtime." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="1040" y="380" width="420" height="150" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel></diagram>
+</mxfile>

@@ -1,0 +1,35 @@
+<mxfile host="app.diagrams.net" modified="2026-01-09T11:07:03.954640Z" agent="GPT" version="22.1.0" type="device">
+<diagram id="845acd68-dac1-4986-b5aa-175115e7d54e" name="ERD 03 - Physical JSON Model"><mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="3" value="&lt;b&gt;Map File (.vitmap.json)&lt;/b&gt;&lt;br/&gt;{&lt;br/&gt;  formatVersion,&lt;br/&gt;  mapId, name,&lt;br/&gt;  width, height, tileSize,&lt;br/&gt;  tilesets:[...],&lt;br/&gt;  layers:[...],&lt;br/&gt;  events:[...]&lt;br/&gt;}" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="40" y="40" width="520" height="260" as="geometry"/>
+    </mxCell><mxCell id="4" value="&lt;b&gt;tilesets[] : TilesetRefDto&lt;/b&gt;&lt;br/&gt;{ tilesetId, imagePath, tileWidth, tileHeight, margin, spacing }" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="600" y="40" width="560" height="160" as="geometry"/>
+    </mxCell><mxCell id="5" value="&lt;b&gt;layers[] : TileLayerDto&lt;/b&gt;&lt;br/&gt;{ layerId, name, kind, visible, tiles:int[] }" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="600" y="220" width="560" height="150" as="geometry"/>
+    </mxCell><mxCell id="6" value="&lt;b&gt;events[] : MapEventDto&lt;/b&gt;&lt;br/&gt;{ eventId, name, type, x, y, parameters:{}, commands:[] }" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="600" y="400" width="560" height="170" as="geometry"/>
+    </mxCell><mxCell id="7" value="&lt;b&gt;commands[] : EventCommandDto&lt;/b&gt;&lt;br/&gt;{ command, args:{} }  (order matters)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="600" y="590" width="560" height="140" as="geometry"/>
+    </mxCell><mxCell id="8" value="&lt;b&gt;Vitriol.Projects (folder)&lt;/b&gt;&lt;br/&gt;/maps/*.vitmap.json&lt;br/&gt;/assets/tilesets/*.png&lt;br/&gt;/data/*.db (editor only)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="40" y="340" width="520" height="170" as="geometry"/>
+    </mxCell><mxCell id="9" value="maps/ contains" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="8" target="3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="10" value="assets/tilesets/ contains PNG referenced by imagePath" style="endArrow=block;html=1;strokeColor=#9673a6;" edge="1" parent="1" source="8" target="4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="11" value="tilesets[]" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="3" target="4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="12" value="layers[]" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="3" target="5">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="13" value="events[]" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="3" target="6">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="14" value="commands[]" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="6" target="7">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell><mxCell id="15" value="&lt;b&gt;Physical rules enforced in code&lt;/b&gt;&lt;br/&gt;• imagePath is stored relative to project root; runtime/editor resolve to full path.&lt;br/&gt;• New maps start with a blank 32×32 tile grid (Background) plus Collision layer.&lt;br/&gt;• Autosave only activates after first manual Save for new maps; sample map always autosaves." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="40" y="540" width="520" height="190" as="geometry"/>
+    </mxCell>
+  </root>
+</mxGraphModel></diagram>
+</mxfile>

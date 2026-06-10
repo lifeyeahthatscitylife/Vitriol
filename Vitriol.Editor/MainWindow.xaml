@@ -1,0 +1,354 @@
+﻿<Window x:Class="Vitriol.Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vitriol Editor"
+        Height="720"
+        Width="1280"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Orientation="Horizontal" Margin="0,0,0,8" VerticalAlignment="Center">
+
+            <Button Width="160" Height="32" Margin="0,0,8,0" Click="OnInitClick">
+                Init Project DB
+            </Button>
+
+            <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4" Padding="8,6" Margin="0,0,8,0">
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBlock Text="Map Size:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <TextBlock Text="W" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                    <TextBox Name="MapWidthBox" Width="70" Height="24" Text="300" Margin="0,0,10,0"/>
+                    <TextBlock Text="H" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                    <TextBox Name="MapHeightBox" Width="70" Height="24" Text="200" Margin="0,0,10,0"/>
+
+                    <Button Width="180" Height="28" Click="OnCreateSampleMapClick">
+                        Create Sample Map
+                    </Button>
+
+                    <!-- NEW: Create New Map -->
+                    <Button Width="160" Height="28" Margin="8,0,0,0" Click="OnCreateNewMapClick">
+                        Create New Map
+                    </Button>
+
+                    <Button Width="140" Height="28" Margin="8,0,0,0" Click="OnLoadMapClick">
+                        Load Map
+                    </Button>
+
+                    <!-- NEW: Save Map -->
+                    <Button Width="120" Height="28" Margin="8,0,0,0" Click="OnSaveMapClick">
+                        Save
+                    </Button>
+
+                </StackPanel>
+            </Border>
+
+            <Separator Width="12" Opacity="0"/>
+
+            <Button Width="90" Height="32" Margin="0,0,6,0" Click="OnZoomOutClick">Zoom -</Button>
+            <Button Width="90" Height="32" Margin="0,0,6,0" Click="OnZoomResetClick">Reset</Button>
+            <Button Width="90" Height="32" Click="OnZoomInClick">Zoom +</Button>
+
+            <TextBlock Margin="16,6,0,0"
+                       Foreground="#666"
+                       VerticalAlignment="Center"
+                       Text="Playtest: F5 toggle, WASD/Arrows move, E/Enter interact, Esc exit"/>
+        </WrapPanel>
+
+        <DockPanel Grid.Row="1" Margin="0,0,0,8">
+            <TextBlock Name="StatusText"
+                       FontSize="14"
+                       DockPanel.Dock="Left"
+                       TextTrimming="CharacterEllipsis"/>
+
+            <TextBlock Name="ZoomText"
+                       FontSize="14"
+                       DockPanel.Dock="Right"
+                       Margin="12,0,0,0"/>
+
+            <TextBlock Name="MouseText"
+                       FontSize="14"
+                       DockPanel.Dock="Right"/>
+        </DockPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="360"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" CornerRadius="4" Padding="10">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              IsManipulationEnabled="True"
+                              ScrollViewer.PanningMode="VerticalOnly"
+                              ScrollViewer.CanContentScroll="False"
+                              Stylus.IsPressAndHoldEnabled="False"
+                              Stylus.IsFlicksEnabled="False">
+
+                    <StackPanel>
+
+                        <TextBlock FontSize="16" FontWeight="SemiBold" Text="Tools" Margin="0,0,0,8"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="Edit Mode:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                            <RadioButton Name="ModeTiles"
+                                         Content="Tiles"
+                                         IsChecked="True"
+                                         Margin="0,0,10,0"
+                                         Checked="OnModeChanged"/>
+                            <RadioButton Name="ModeCollision"
+                                         Content="Collision"
+                                         Margin="0,0,10,0"
+                                         Checked="OnModeChanged"/>
+                            <RadioButton Name="ModeEvents"
+                                         Content="Events"
+                                         Checked="OnModeChanged"/>
+                        </StackPanel>
+
+                        <CheckBox Name="ShowCollisionOverlay"
+                                  Content="Show collision overlay"
+                                  IsChecked="False"
+                                  Checked="OnOverlayChanged"
+                                  Unchecked="OnOverlayChanged"
+                                  Margin="0,0,0,6"/>
+
+                        <CheckBox Name="ShowEventsOverlay"
+                                  Content="Show events overlay"
+                                  IsChecked="True"
+                                  Checked="OnOverlayChanged"
+                                  Unchecked="OnOverlayChanged"
+                                  Margin="0,0,0,14"/>
+
+                        <Separator Margin="0,0,0,12"/>
+
+                        <!-- Tile palette + tileset management -->
+                        <TextBlock FontSize="16" FontWeight="SemiBold" Text="Tile Palette" Margin="0,0,0,8"/>
+
+                        <!-- Tileset controls (button + checkboxes live here) -->
+                        <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,10">
+                            <StackPanel>
+                                <Button Height="28"
+                                        Margin="0,0,0,8"
+                                        Click="OnLoadTilesetsClick">
+                                    Load Tileset PNG(s)...
+                                </Button>
+
+                                <TextBlock FontWeight="SemiBold" Text="Loaded Tilesets" Margin="0,0,0,6"/>
+
+                                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                              HorizontalScrollBarVisibility="Disabled"
+                                              Height="120"
+                                              IsManipulationEnabled="True"
+                                              ScrollViewer.PanningMode="VerticalOnly"
+                                              ScrollViewer.CanContentScroll="False"
+                                              Stylus.IsPressAndHoldEnabled="False"
+                                              Stylus.IsFlicksEnabled="False">
+                                    <StackPanel Name="TilesetListPanel"/>
+                                </ScrollViewer>
+
+                                <TextBlock Foreground="#666"
+                                           Margin="0,8,0,0"
+                                           TextWrapping="Wrap"
+                                           Text="Tip: Uncheck a tileset to unload it (keeps indices stable, but tiles render blank until re-enabled)."/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Palette thumbnails -->
+                        <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4" Padding="6" Margin="0,0,0,14">
+                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                          HorizontalScrollBarVisibility="Disabled"
+                                          Height="220"
+                                          IsManipulationEnabled="True"
+                                          ScrollViewer.PanningMode="VerticalOnly"
+                                          ScrollViewer.CanContentScroll="False"
+                                          Stylus.IsPressAndHoldEnabled="False"
+                                          Stylus.IsFlicksEnabled="False">
+                                <WrapPanel Name="TilePalettePanel"/>
+                            </ScrollViewer>
+                        </Border>
+
+                        <Separator Margin="0,0,0,12"/>
+
+                        <TextBlock FontSize="16" FontWeight="SemiBold" Text="Event Editor" Margin="0,0,0,8"/>
+                        <TextBlock Name="EventSelectedText" Foreground="#666" Margin="0,0,0,8"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Width="70" Text="Name:" VerticalAlignment="Center"/>
+                            <TextBox Name="EventNameBox" Width="240" LostFocus="OnEventNameLostFocus"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <TextBlock Width="70" Text="Type:" VerticalAlignment="Center"/>
+                            <ComboBox Name="EventTypeBox" Width="240" SelectionChanged="OnEventTypeChanged"/>
+                        </StackPanel>
+
+                        <Button Name="DeleteEventButton"
+                                Height="28"
+                                Width="120"
+                                Margin="0,0,0,12"
+                                Click="OnDeleteEventClick">
+                            Delete
+                        </Button>
+
+                        <StackPanel Name="WarpFieldsPanel" Visibility="Collapsed" Margin="0,0,0,12">
+                            <TextBlock FontWeight="SemiBold" Text="Warp Settings" Margin="0,0,0,6"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                <TextBlock Width="70" Text="destMap:" VerticalAlignment="Center"/>
+                                <ComboBox Name="WarpDestMapBox"
+                                          Width="240"
+                                          IsEditable="True"
+                                          DropDownOpened="OnWarpDestMapDropDownOpened"
+                                          LostFocus="OnWarpFieldsLostFocus"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                <TextBlock Width="70" Text="destX:" VerticalAlignment="Center"/>
+                                <TextBox Name="WarpDestXBox" Width="70" LostFocus="OnWarpFieldsLostFocus"/>
+                                <TextBlock Width="30"/>
+                                <TextBlock Width="70" Text="destY:" VerticalAlignment="Center"/>
+                                <TextBox Name="WarpDestYBox" Width="70" LostFocus="OnWarpFieldsLostFocus"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4" Padding="8" Margin="0,0,0,12">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0"
+                                           FontSize="14"
+                                           FontWeight="SemiBold"
+                                           Text="Parameters"
+                                           Margin="0,0,0,8"/>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="0" Margin="0,0,0,8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid Grid.Column="0" Margin="0,0,8,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="Key:" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                            <TextBox Grid.Column="1" Name="ParamKeyBox" Height="26" MinWidth="90" Margin="0,0,12,0"/>
+
+                                            <TextBlock Grid.Column="2" Text="Value:" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                                            <TextBox Grid.Column="3" Name="ParamValueBox" Height="26" MinWidth="90"/>
+                                        </Grid>
+
+                                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                                            <Button Width="76" Height="26" Click="OnAddParamClick" Margin="0,0,0,6">Add</Button>
+                                            <Button Width="76" Height="26" Click="OnDeleteParamClick">Delete</Button>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <ListBox Grid.Row="1"
+                                             Name="ParamsList"
+                                             SelectionChanged="OnParamSelectionChanged"
+                                             MinHeight="110"
+                                             IsManipulationEnabled="True"
+                                             ScrollViewer.PanningMode="VerticalOnly"
+                                             ScrollViewer.CanContentScroll="False"
+                                             Stylus.IsPressAndHoldEnabled="False"
+                                             Stylus.IsFlicksEnabled="False"/>
+                                </Grid>
+                            </Grid>
+                        </Border>
+
+                        <Separator Margin="0,0,0,12"/>
+
+                        <TextBlock FontSize="16" FontWeight="SemiBold" Text="Event Script" Margin="0,0,0,8"/>
+
+                        <ListBox Name="EventCommandList"
+                                 Height="160"
+                                 SelectionChanged="OnCommandSelectionChanged"
+                                 Margin="0,0,0,8"
+                                 IsManipulationEnabled="True"
+                                 ScrollViewer.PanningMode="VerticalOnly"
+                                 ScrollViewer.CanContentScroll="False"
+                                 Stylus.IsPressAndHoldEnabled="False"
+                                 Stylus.IsFlicksEnabled="False"/>
+
+                        <WrapPanel Margin="0,0,0,10">
+                            <Button Width="90" Height="28" Margin="0,0,6,6" Click="OnAddShowTextClick">+ ShowText</Button>
+                            <Button Width="90" Height="28" Margin="0,0,6,6" Click="OnAddSetFlagClick">+ SetFlag</Button>
+                            <Button Width="80" Height="28" Margin="0,0,6,6" Click="OnDeleteCommandClick">Delete</Button>
+                            <Button Width="60" Height="28" Margin="0,0,6,6" Click="OnMoveCommandUpClick">Up</Button>
+                            <Button Width="60" Height="28" Margin="0,0,6,6" Click="OnMoveCommandDownClick">Down</Button>
+                        </WrapPanel>
+
+                        <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4" Padding="8">
+                            <StackPanel>
+
+                                <TextBlock Name="CommandEditorHeader"
+                                           FontWeight="SemiBold"
+                                           Text="No command selected"
+                                           Margin="0,0,0,8"/>
+
+                                <StackPanel Name="ShowTextEditorPanel" Visibility="Collapsed">
+                                    <TextBlock Text="Text:" Margin="0,0,0,4"/>
+                                    <TextBox Name="CmdTextBox"
+                                             Height="70"
+                                             AcceptsReturn="True"
+                                             TextWrapping="Wrap"
+                                             LostFocus="OnCommandFieldsLostFocus"/>
+                                </StackPanel>
+
+                                <StackPanel Name="SetFlagEditorPanel" Visibility="Collapsed">
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                        <TextBlock Width="70" Text="Flag:" VerticalAlignment="Center"/>
+                                        <TextBox Name="CmdFlagNameBox" Width="240" LostFocus="OnCommandFieldsLostFocus"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="70" Text="Value:" VerticalAlignment="Center"/>
+                                        <TextBox Name="CmdFlagValueBox" Width="240" LostFocus="OnCommandFieldsLostFocus"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </Border>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+            <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
+                <ScrollViewer Name="MapScroll"
+                              HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto"
+                              ScrollChanged="OnScrollChanged"
+                              PreviewMouseWheel="OnScrollViewerMouseWheel">
+
+                    <Canvas Name="MapCanvas"
+                            Background="#111111"
+                            MouseMove="OnMapCanvasMouseMove"
+                            MouseLeave="OnMapCanvasMouseLeave"
+                            MouseLeftButtonDown="OnMapCanvasMouseLeftButtonDown"
+                            MouseRightButtonDown="OnMapCanvasMouseRightButtonDown"/>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

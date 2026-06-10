@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.3.0">
+  <diagram name="Architecture" id="533a033435564c6190581ff13e7145be" compressed="false">
+    <mxGraphModel dx="1729" dy="1187" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=14;" value="Project Vitriol – Design Overview" vertex="1">
+          <mxGeometry height="50" width="1020" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="g1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=13;" value="WPF Editor (Vitriol.Editor)" vertex="1">
+          <mxGeometry height="260" width="460" x="60" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="e_ui" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#444444;fontSize=12;" value="MainWindow.xaml + .cs&amp;lt;br/&amp;gt;• Map viewport renderer&amp;lt;br/&amp;gt;• Tile palette + tileset panel&amp;lt;br/&amp;gt;• Event editor&amp;lt;br/&amp;gt;• Undo/Redo" vertex="1">
+          <mxGeometry height="200" width="420" x="80" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="g2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=13;" value="Shared Engine/DTOs" vertex="1">
+          <mxGeometry height="260" width="460" x="560" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="shared" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#444444;fontSize=12;" value="Vitriol.Shared.Maps&amp;lt;br/&amp;gt;• MapDto, TileLayerDto, TilesetRefDto, MapEventDto&amp;lt;br/&amp;gt;&amp;lt;br/&amp;gt;Vitriol.Engine.Maps&amp;lt;br/&amp;gt;• MapSerializer (load/save)&amp;lt;br/&amp;gt;• MapFormat (extension/version)" vertex="1">
+          <mxGeometry height="200" width="420" x="580" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="g3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=13;" value="Project Data on Disk (Vitriol.Projects)" vertex="1">
+          <mxGeometry height="210" width="960" x="60" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="disk" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#444444;fontSize=12;" value="Vitriol.Projects/&amp;lt;br/&amp;gt;• maps/ (*.vitmap.json)&amp;lt;br/&amp;gt;• assets/tilesets/ (*.png)&amp;lt;br/&amp;gt;• data/ (SQLite DB)" vertex="1">
+          <mxGeometry height="150" width="420" x="90" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="db" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#444444;fontSize=12;" value="Vitriol.Data&amp;lt;br/&amp;gt;• DbPaths + SQLite&amp;lt;br/&amp;gt;• MigrationRunner" vertex="1">
+          <mxGeometry height="150" width="430" x="540" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="g4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=13;" value="WPF Runtime (Vitriol.Runtime)" vertex="1">
+          <mxGeometry height="170" width="960" x="60" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="rt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#444444;fontSize=12;" value="MainWindow.xaml + .cs&amp;lt;br/&amp;gt;• Load map via file picker (maps folder)&amp;lt;br/&amp;gt;• Validate tileset PNGs exist&amp;lt;br/&amp;gt;• Viewport-only rendering + camera follow&amp;lt;br/&amp;gt;• Basic interaction + warp" vertex="1">
+          <mxGeometry height="110" width="920" x="90" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" edge="1" parent="1" source="e_ui" style="endArrow=block;html=1;rounded=0;" target="shared" value="uses DTOs + serializer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" edge="1" parent="1" source="e_ui" style="endArrow=block;html=1;rounded=0;" target="disk" value="reads/writes maps + tilesets">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" edge="1" parent="1" source="e_ui" style="endArrow=block;html=1;rounded=0;" target="db" value="initialises DB / migrations">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" edge="1" parent="1" source="rt" style="endArrow=block;html=1;rounded=0;" target="shared" value="uses DTOs + serializer">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a5" edge="1" parent="1" source="rt" style="endArrow=block;html=1;rounded=0;" target="disk" value="loads maps + tileset PNGs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

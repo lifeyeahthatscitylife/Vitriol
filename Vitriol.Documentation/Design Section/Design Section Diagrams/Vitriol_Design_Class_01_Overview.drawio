@@ -1,0 +1,103 @@
+<mxfile host="app.diagrams.net" modified="2026-01-10T23:00:56.123362Z" agent="GPT" version="22.1.0" type="device">
+<diagram id="17f19a3f-62cf-45dc-bd3f-733fac6b1e72" name="Class Diagram 01 - Solution Overview">
+  <mxGraphModel dx="1024" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="t0" value="Vitriol Solution
+(High-level class responsibilities)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="20" width="520" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="c1" value="Vitriol.Editor
+MainWindow
+
+Responsibilities:
+• Load/Create maps
+• Edit tiles/collision/events
+• Save + autosave rules
+• Tileset palette + caching
+• Viewport renderer (zoom + grid)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="40" y="120" width="330" height="220" as="geometry"/>
+    </mxCell>
+    <mxCell id="c2" value="Vitriol.Runtime
+MainWindow
+
+Responsibilities:
+• Load chosen map
+• Verify tileset PNGs exist
+• Viewport renderer
+• Player movement + camera follow
+• Execute event scripts (subset)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="420" y="120" width="330" height="220" as="geometry"/>
+    </mxCell>
+    <mxCell id="c3" value="Vitriol.Shared.Maps
+
+DTOs:
+• MapDto
+• TileLayerDto
+• TilesetRefDto
+• MapEventDto
+• EventCommandDto
+Enums:
+• LayerKind
+Format constants:
+• MapFormat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="40" y="380" width="330" height="220" as="geometry"/>
+    </mxCell>
+    <mxCell id="c4" value="Vitriol.Engine.Maps
+
+Services:
+• MapSerializer (JSON IO)
+• MapFormat (version + extension)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="420" y="380" width="330" height="180" as="geometry"/>
+    </mxCell>
+    <mxCell id="c5" value="Vitriol.Shared.Validation
+
+• MapValidator
+(validates map DTOs)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="40" y="640" width="330" height="140" as="geometry"/>
+    </mxCell>
+    <mxCell id="c6" value="Vitriol.Data.Db / Migrations
+
+• DbPaths
+• SqliteConnectionFactory
+• MigrationRunner
+(used by Editor for project DB)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="420" y="600" width="330" height="180" as="geometry"/>
+    </mxCell>
+    <mxCell id="n1" value="Design note:
+Editor &amp; Runtime deliberately share
+exact same DTOs + serializer.
+This prevents divergence between
+what I can create in the editor
+and what the runtime can load." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="800" y="160" width="360" height="180" as="geometry"/>
+    </mxCell>
+    <mxCell id="e1" value="uses DTOs" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="c1" target="c3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e2" value="uses DTOs" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="c2" target="c3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e3" value="load/save JSON" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="c1" target="c4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4" value="load JSON" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="c2" target="c4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e5" value="validate before save" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="c1" target="c5">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e6" value="initialise DB" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="c1" target="c6">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e7" value="rationale" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="c1" target="n1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e8" value="rationale" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="c2" target="n1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </root>
+  </mxGraphModel>
+</diagram>
+</mxfile>

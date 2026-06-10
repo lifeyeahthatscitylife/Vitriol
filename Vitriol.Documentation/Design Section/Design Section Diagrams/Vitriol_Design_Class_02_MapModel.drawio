@@ -1,0 +1,102 @@
+<mxfile host="app.diagrams.net" modified="2026-01-10T23:01:10.736861Z" agent="GPT" version="22.1.0" type="device">
+<diagram id="c2e7d846-68a9-4629-9b8a-3607c21488ac" name="Class Diagram 02 - Map DTO Model">
+  <mxGraphModel dx="1024" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="t0" value="Map Data Model (DTOs) - Logical class diagram" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="20" y="20" width="520" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="m" value="MapDto
+
++FormatVersion:int
++MapId:string
++Name:string
++Width:int
++Height:int
++TileSize:int
++Tilesets: TilesetRefDto[]
++Layers: TileLayerDto[]
++Events: List&lt;MapEventDto&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="60" y="120" width="360" height="260" as="geometry"/>
+    </mxCell>
+    <mxCell id="tl" value="TileLayerDto
+
++LayerId:string
++Name:string
++Kind:LayerKind
++Visible:bool
++Tiles:int[]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="520" y="160" width="320" height="210" as="geometry"/>
+    </mxCell>
+    <mxCell id="ts" value="TilesetRefDto
+
++TilesetId:string
++ImagePath:string
++TileWidth:int
++TileHeight:int
++Margin:int
++Spacing:int" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="60" y="430" width="360" height="210" as="geometry"/>
+    </mxCell>
+    <mxCell id="ev" value="MapEventDto
+
++EventId:string
++Name:string
++Type:string
++X:int
++Y:int
++Parameters:Dictionary&lt;string,string&gt;
++Commands: EventCommandDto[]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="520" y="420" width="360" height="250" as="geometry"/>
+    </mxCell>
+    <mxCell id="cmd" value="EventCommandDto
+
++Command:string
++Args:Dictionary&lt;string,string&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="940" y="500" width="300" height="160" as="geometry"/>
+    </mxCell>
+    <mxCell id="lk" value="LayerKind (enum)
+
+Background
+Collision
+(others possible)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+      <mxGeometry x="940" y="220" width="260" height="160" as="geometry"/>
+    </mxCell>
+    <mxCell id="fmt" value="MapFormat (static)
+
++CurrentVersion:int
++DefaultExtension:string
+(used by serializer + file naming)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="940" y="60" width="300" height="120" as="geometry"/>
+    </mxCell>
+    <mxCell id="n1" value="Cardinality notes:
+• MapDto &#x27;owns&#x27; Tilesets/Layers/Events.
+• Layers are parallel arrays matching Width*Height.
+• Collision layer is a conventional layerId &#x27;col&#x27;
+  for compatibility across editor/runtime.
+• Events are sparse (only stored when present)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="60" y="680" width="800" height="180" as="geometry"/>
+    </mxCell>
+    <mxCell id="e1" value="1..*" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="m" target="ts">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e2" value="1..*" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="m" target="tl">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e3" value="0..*" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="m" target="ev">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4" value="0..*" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="ev" target="cmd">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e5" value="uses" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="tl" target="lk">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e6" value="versioning" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="m" target="fmt">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+  </root>
+  </mxGraphModel>
+</diagram>
+</mxfile>

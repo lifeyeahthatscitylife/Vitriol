@@ -1,0 +1,66 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0" version="29.3.0" pages="2">
+  <diagram id="07d4a236-5134-42dc-a411-e41bfb24437c" name="ERD 02 - Logical Model">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3" value="&lt;b&gt;MAP&lt;/b&gt;&lt;br/&gt;&lt;u&gt;MapId&lt;/u&gt;&lt;br/&gt;Name&lt;br/&gt;Width&lt;br/&gt;Height&lt;br/&gt;TileSize&lt;br/&gt;FormatVersion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="360" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="&lt;b&gt;TILESET&lt;/b&gt;&lt;br/&gt;&lt;u&gt;TilesetId&lt;/u&gt;&lt;br/&gt;ImagePath (rel)&lt;br/&gt;TileWidth&lt;br/&gt;TileHeight&lt;br/&gt;Margin&lt;br/&gt;Spacing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="460" y="40" width="380" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="&lt;b&gt;MAP_TILESET_REF&lt;/b&gt;&lt;br/&gt;&lt;u&gt;MapId&lt;/u&gt; (FK)&lt;br/&gt;&lt;u&gt;TilesetId&lt;/u&gt; (FK)&lt;br/&gt;StartIndexGlobal (derived)&lt;br/&gt;Order (optional)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="900" y="40" width="420" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="&lt;b&gt;LAYER&lt;/b&gt;&lt;br/&gt;&lt;u&gt;LayerId&lt;/u&gt;&lt;br/&gt;MapId (FK)&lt;br/&gt;Name&lt;br/&gt;Kind (Background/Collision)&lt;br/&gt;Visible&lt;br/&gt;Tiles[int] (Width×Height)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="360" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="&lt;b&gt;EVENT&lt;/b&gt;&lt;br/&gt;&lt;u&gt;EventId&lt;/u&gt;&lt;br/&gt;MapId (FK)&lt;br/&gt;Name&lt;br/&gt;Type (Trigger/NPC/Warp)&lt;br/&gt;X&lt;br/&gt;Y" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="460" y="260" width="380" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="&lt;b&gt;EVENT_PARAM&lt;/b&gt;&lt;br/&gt;&lt;u&gt;EventId&lt;/u&gt; (FK)&lt;br/&gt;&lt;u&gt;Key&lt;/u&gt;&lt;br/&gt;Value" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="900" y="260" width="420" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="&lt;b&gt;EVENT_COMMAND&lt;/b&gt;&lt;br/&gt;&lt;u&gt;EventId&lt;/u&gt; (FK)&lt;br/&gt;&lt;u&gt;Index&lt;/u&gt; (ordered)&lt;br/&gt;CommandName&lt;br/&gt;Args (dict)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="460" y="500" width="380" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="&lt;b&gt;COMMAND_ARG&lt;/b&gt;&lt;br/&gt;&lt;u&gt;EventId&lt;/u&gt; (FK)&lt;br/&gt;&lt;u&gt;Index&lt;/u&gt; (FK)&lt;br/&gt;&lt;u&gt;Key&lt;/u&gt;&lt;br/&gt;Value" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="900" y="500" width="420" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="1..*" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="3" target="6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="0..*" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="3" target="7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="0..*" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="3" target="5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="0..*" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="4" target="5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="0..*" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="7" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="0..* (ordered)" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="7" target="9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="0..*" style="endArrow=block;html=1;rounded=0;strokeColor=#000000;" edge="1" parent="1" source="9" target="10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="&lt;b&gt;Logical notes&lt;/b&gt;&lt;br/&gt;• MAP_TILESET_REF exists logically even though JSON stores tilesets inline; it explains many-to-many &amp; ordering.&lt;br/&gt;• EVENT_COMMAND uses an Index so the sequence is deterministic.&lt;br/&gt;• Tiles[int] is stored as a flat array; index = y*Width + x." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="740" width="1280" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="qjKB2K0-1jfZ4wzJkCNh" name="Page-2">
+    <mxGraphModel dx="778" dy="534" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
