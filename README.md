@@ -30,7 +30,7 @@ Method 1 - CMD
 
 
 1. Open CMD (Command Prompt)
-2. type: cd "<insert file path to Vitriol root folder>"
+2. type: cd "insert file path to Vitriol root folder"
 3. To run editor, paste: dotnet run --project Vitriol.Editor\\Vitriol.Editor.csproj
 4. To run runtime, paste: dotnet run --project Vitriol.Runtime\\Vitriol.Runtime.csproj
 5. You can only have one open at a given time. Close the current WPF Application before trying to open the second.
@@ -57,7 +57,8 @@ Method 2 - Visual Studio
 3. Define collision tiles
 4. Add event triggers (NPC, Trigger, Warp)
 5. Save the map
-6. Launch runtime and load the saved map
+6. Close Editor
+7. Launch runtime and load the saved map
 
 
 
